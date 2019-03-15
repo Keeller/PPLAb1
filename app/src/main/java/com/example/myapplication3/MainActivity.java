@@ -6,45 +6,36 @@ import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.TextureView;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.TextView;
 import java.text.*;
 
 public class MainActivity extends AppCompatActivity  {
 
-    private Model model=new Model();
+
+    ListView listview;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        listview = (ListView) findViewById(R.id.listview);
+        Model model=new Model(this);
+        listview.setAdapter(model);
 
 
-
-    }
-
-
-
-    public void change()
-    {
-        TextView t=(TextView) findViewById(R.id.textView);
-        LinearLayout ll=(LinearLayout) findViewById(R.id.Layout);
-        t.setText(model.getNumber());
-        if(model.Ismod2())
-            t.setBackgroundColor(Color.parseColor("#CCCCCC"));
-        else
-            t.setBackgroundColor(Color.parseColor("#FFFFFF"));
 
 
     }
 
-    public void onBClick(android.view.View Viewer)
-    {
-        change();
-        model.next();
 
-    }
+
+
+
+
 
 
 
