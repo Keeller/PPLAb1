@@ -15,7 +15,7 @@ import java.util.zip.Inflater;
 public class Model extends BaseAdapter
 {
 
-    private final int Current=1000000;
+    private final int Count=999999;
     Context context;
     private static LayoutInflater inflater=null;
     private static Converter converter;
@@ -24,14 +24,13 @@ public class Model extends BaseAdapter
     {
         this.context=context;
         converter=new Converter();
-        inflater = (LayoutInflater) context
-                .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
     }
 
     @Override
     public Object getItem(int position) {
-        return converter.NumbertoWords(position);
+        return converter.NumbertoWords((position+1));
     }
 
     @Override
@@ -41,7 +40,7 @@ public class Model extends BaseAdapter
 
     @Override
     public int getCount() {
-        return this.Current;
+        return this.Count;
     }
 
 
@@ -58,7 +57,9 @@ public class Model extends BaseAdapter
         } else {
             vi.setBackgroundColor(0xFFFFFFFF);
         }
-        text.setText(converter.NumbertoWords(position));
+
+            text.setText(converter.NumbertoWords(position+1));
+
         return vi;
     }
 
