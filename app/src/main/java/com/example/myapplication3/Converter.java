@@ -7,6 +7,10 @@ public class Converter {
         if (x == 1000000) {
             return "миллион";
         }
+        if(x==0)
+        {
+            return "ноль";
+        }
         StringBuilder Builder = new StringBuilder();
         if (x / 1000 > 0) {
             Builder.append(NumberFrom1to999(x / 1000, true));

@@ -17,13 +17,13 @@ public class MainActivity extends AppCompatActivity  {
 
 
     ListView listview;
-
+    Model model;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         listview = (ListView) findViewById(R.id.listview);
-        Model model=new Model(this);
+        model =new Model(this);
         listview.setAdapter(model);
 
 

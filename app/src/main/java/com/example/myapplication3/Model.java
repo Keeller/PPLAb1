@@ -14,18 +14,16 @@ import java.util.zip.Inflater;
 
 public class Model extends BaseAdapter
 {
-    private ArrayList<String> ColorList=new ArrayList<String>();
-    private boolean IsMod2=false;
-    private int Current=0;
+
+    private final int Current=1000000;
     Context context;
     private static LayoutInflater inflater=null;
+    private static Converter converter;
 
     public Model(Context context)
     {
         this.context=context;
-        Converter converter=new Converter();
-        for(int i=1;i<1000001;i++)
-            ColorList.add(converter.NumbertoWords(i));
+        converter=new Converter();
         inflater = (LayoutInflater) context
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
@@ -33,7 +31,7 @@ public class Model extends BaseAdapter
 
     @Override
     public Object getItem(int position) {
-        return ColorList.get(position);
+        return converter.NumbertoWords(position);
     }
 
     @Override
@@ -43,25 +41,11 @@ public class Model extends BaseAdapter
 
     @Override
     public int getCount() {
-        return ColorList.size();
+        return this.Current;
     }
 
-    public boolean Ismod2()
-    {
-        return IsMod2;
-    }
 
-    public void next()
-    {
-        IsMod2=!IsMod2;
-        Current++;
-    }
 
-    public String getNumber()
-    {
-        return ColorList.get(Current);
-    }
-    public String[] getArr(){return (String[]) ColorList.toArray();}
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
@@ -74,7 +58,7 @@ public class Model extends BaseAdapter
         } else {
             vi.setBackgroundColor(0xFFFFFFFF);
         }
-        text.setText(ColorList.get(position));
+        text.setText(converter.NumbertoWords(position));
         return vi;
     }
 
